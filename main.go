@@ -1,9 +1,11 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
+	"unicode/utf8"
 )
 
 /*
@@ -18,7 +20,21 @@ import (
 */
 func main() {
 	fmt.Println("running sqsInjector ")
-	files, _ := filepath.Glob("/Users/joel/tmp/f*.js")
+
+	src := flag.String("src", "", "path to source file or directory, supports globbing")
+	config := flag.String("config", "./default.config", "the configuration file to use for this")
+
+	flag.Parse()
+
+	if utf8.RuneCountInString(*src) == 0 {
+		fmt.Println("you must supply a src argument to run this application")
+	}
+
+	fmt.Println("reading from : ", *src)
+	fmt.Println("non-flag args : ", flag.Args())
+	fmt.Println("config file : ", *config)
+
+	files, _ := filepath.Glob(*src)
 	fileCount := len(files)
 	if fileCount > 0 {
 		fmt.Printf("%v files found\n", len(files))
