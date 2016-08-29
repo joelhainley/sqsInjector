@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"unicode/utf8"
+
+	"github.com/pborman/getopt"
 )
 
 /*
@@ -21,10 +23,15 @@ import (
 func main() {
 	fmt.Println("running sqsInjector ")
 
+	helpFlag := getopt.Bool('h', "display help")
 	src := flag.String("src", "", "path to source file or directory, supports globbing")
 	config := flag.String("config", "./default.config", "the configuration file to use for this")
 
-	flag.Parse()
+	getopt.Parse()
+
+	fmt.Println("help flag value : ", *helpFlag)
+
+	//flag.Parse()
 
 	if utf8.RuneCountInString(*src) == 0 {
 		fmt.Println("you must supply a src argument to run this application")
