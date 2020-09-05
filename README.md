@@ -4,7 +4,7 @@ This tool pushes text-files into an AWS SQS Message Queue, one message per file.
 
 Written in Go
 
-It took its inspiration from another java-based tool I wrote called amqInjector available here (<https://github.com/joelhainley/amqInjector>)
+It took its inspiration from a java-based tool I wrote called amqInjector available here (<https://github.com/joelhainley/amqInjector>)
 
 Todo:
 
